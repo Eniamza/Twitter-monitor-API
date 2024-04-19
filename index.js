@@ -65,7 +65,11 @@ const userChannelMap = {
     '1154414041131081730': '1192809888884207626', // king_caco
     '946739947440103424': '1192809953363247164', // ibraxblr
     '2959257250': '1192810009797595136', // BassManTV
-    '941938128201203712': '1192810086821789696' // ShogunMasterRoy
+    '941938128201203712': '1192810086821789696', // ShogunMasterRoy
+    '1480542065524187142':'1192829767595085894', //rjnft99
+    '1261232335573393408':'1199033405589958677', //0x_Sats
+    '1373367276351725583':'1199033736226930879', //AIprojecthub
+    '873190778910253056':'1210580972207087636', //koreanjewcrypto
 };
 
 const fetchAllFollowers = async (userId, count = 100, nextCursor = null) => {
@@ -135,7 +139,7 @@ async function monitorNewFollowsForMultipleUsers(userIds) {
         }
 
         currentIndex = (currentIndex + 1) % userIds.length;
-        setTimeout(checkForNewFollows, 60000);
+        setTimeout(checkForNewFollows, 1800000);
     }
 
     checkForNewFollows();
