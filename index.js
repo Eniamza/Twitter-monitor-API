@@ -82,7 +82,6 @@ const fetchAllFollowers = async (userId, count = 100, nextCursor = null) => {
     console.log(response.list[1].userName)
 
     console.log("Current:",followers.length)
-    console.log("Total:",total)
 
     if (response.next.value.split("|")[0] !== '0') {
         followers = followers.concat((await fetchAllFollowers(userId, count,  response.next.value)));
