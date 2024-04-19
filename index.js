@@ -68,6 +68,27 @@ const userChannelMap = {
     '941938128201203712': '1192810086821789696' // ShogunMasterRoy
 };
 
+const fetchAllFollowers = async (userId, count = 100, nextCursor = null) => {
+
+
+    let response = await rettiwt.user.following(userId,count, nextCursor);
+    let followers = response.list;
+
+    console.log(response.next.value)
+    console.log(response.list[1].userName)
+
+    total+=followers.length;
+
+    console.log("Current:",followers.length)
+    console.log("Total:",total)
+
+    if (response.next.value.split("|")[0] !== '0') {
+        followers = followers.concat((await fetchAllFollowers(userId, count,  response.next.value)));
+    }
+
+
+    return followers;
+}
 
 async function monitorNewFollowsForMultipleUsers(userIds) {
     let userKnownFollowingIds;
@@ -85,7 +106,7 @@ async function monitorNewFollowsForMultipleUsers(userIds) {
     const checkForNewFollows = async () => {
         const userId = userIds[currentIndex];
         try {
-            let response = await rettiwt.user.following(userId, 50);
+            let response = await fetchAllFollowers(userId);
             console.log(response.list[0])
             console.log("API CALLED");
             for (let i = 0; i < response.list.length; i++) {
