@@ -108,10 +108,10 @@ async function monitorNewFollowsForMultipleUsers(userIds) {
         const userId = userIds[currentIndex];
         try {
             let response = await fetchAllFollowers(userId);
-            console.log(response.list[0])
+            console.log(response)
             console.log("API CALLED");
-            for (let i = 0; i < response.list.length; i++) {
-                let user = response.list[i];
+            for (let i = 0; i < response.length; i++) {
+                let user = response[i];
                 let userSet = userKnownFollowingIds.get(userId);
                 if (!userSet) {
                     userSet = new Set();
