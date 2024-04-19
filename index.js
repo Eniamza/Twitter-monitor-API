@@ -81,8 +81,6 @@ const fetchAllFollowers = async (userId, count = 100, nextCursor = null) => {
     console.log(response.next.value)
     console.log(response.list[1].userName)
 
-    total+=followers.length;
-
     console.log("Current:",followers.length)
     console.log("Total:",total)
 
